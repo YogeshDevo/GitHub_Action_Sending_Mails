@@ -11,7 +11,7 @@ jobs:
 
   - name: By Using GitAction Workplace
     if: ${{ always() }}
-    uses: dawidd6/acttion-send-mail@v3
+    uses:  devellany/send-mailer@v1.0.2
     with:
       server_adress: smtp.gmail.com
       server_port: 465
