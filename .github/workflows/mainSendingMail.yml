@@ -5,21 +5,21 @@ jobs:
  Mails:
   runs-on: ubuntu-latest
   
-  steps:
-  - name: Send email
-  uses: devellany/send-mailer@v1.0.2
-  with:
-    host: smtp.google.com
-      # Optional port (defaults to 465)
-      port: 465
-      account: ${{secrets.ACCOUNT}}
-      password: ${{secrets.MAIL_PASSWORD}}
-      sender: devellany
-      from: ${{secrets.MAIL_ADDRESS}}
+  steps: 
+  - name: Send the New Mail
+    run: echo "To Send the Mail by Using Git Hub Action"
+
+  - name: By Using GitAction Workplace
+    if: ${{ always() }}
+    uses: dawidd6/acttion-send-mail@v3
+    with:
+      server_adress: smtp.gmail.com
+      server_port: 465
+
+      Username: ${{ secrets.EMAIL_USERNAME }}
+      Password: ${{ secrets.EMAIL_PASSWORD }}
+
+      subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
+      body: ${{ github.workflow }} job of ${{ github.repository }} has completed with status ${{ job.status }}
       to: yogeshlc021@gmail.com
-      subject: mail title.
-      body: your messages.
-      # Optional content type (defaults to text/plain)
-      contentType: text/plain
-      # Optional attachment files (JSON type. require property 'path')
-      attachments: '[{"path":"README.md"}]'
+      from: Yogesh 
